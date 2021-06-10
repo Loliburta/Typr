@@ -1,3 +1,4 @@
+// Most popular words in english
 export const words = [
   "the",
   "of",
@@ -16,7 +17,6 @@ export const words = [
   "are",
   "with",
   "as",
-  "I",
   "his",
   "they",
   "be",

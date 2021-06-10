@@ -29,6 +29,7 @@
     padding-top: 15px;
     font-weight: 500;
     color: hsl(0, 0%, 90%);
+    font-family: "Roboto Mono", monospace;
   }
   &__middle {
     grid-area: mid;
@@ -37,18 +38,20 @@
     align-items: center;
     &__text {
       font-size: 30px;
+      color: hsl(0, 0%, 50%);
+      font-family: "Roboto Mono", monospace;
     }
   }
 }
 
 .Character {
-  white-space: pre;
+  flex-wrap: wrap;
 }
 
 .Character-current {
-  background-color: #09d3ac;
+  background-color: rgba(255, 255, 255, 0.1);
 }
 
 .Character-out {
-  color: silver;
+  color: hsl(0, 0%, 80%);
 }
