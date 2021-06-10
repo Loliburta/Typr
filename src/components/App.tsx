@@ -1,6 +1,7 @@
 import { useState, useRef } from "react";
 import { words } from "../utils/words";
 import useKeyPress from "../hooks/useKeyPress";
+import { Summary } from "./summary/Summary";
 export const App = () => {
   const typingTest = useRef(
     words
@@ -16,25 +17,22 @@ export const App = () => {
   );
   const [timeToWrite, setTimeToWrite] = useState(0);
   const [mistakes, setMistakes] = useState(0);
+  const [showSummary, setShowSummary] = useState(false);
 
   useKeyPress((key: any) => {
-    let updatedOutgoingChars = outgoingChars;
-    let updatedIncomingChars = incomingChars;
-
     if (key === currentChar) {
       if (!timeToWrite) {
         setTimeToWrite(Date.now());
         setMistakes(0);
       }
-      updatedOutgoingChars += currentChar;
-      setOutgoingChars(updatedOutgoingChars);
-      setCurrentChar(incomingChars.charAt(0));
-      updatedIncomingChars = incomingChars.substring(1);
-      setIncomingChars(updatedIncomingChars);
-      if (incomingChars.length === 0) {
+      setOutgoingChars(outgoingChars + currentChar);
+      setCurrentChar(incomingChars[0]);
+      setIncomingChars(incomingChars.slice(1));
+      if (!incomingChars) {
         setTimeToWrite(
           Math.round(((Date.now() - timeToWrite) / 1000) * 100) / 100
         );
+        setShowSummary(true);
       }
     } else {
       setMistakes(mistakes + 1);
@@ -45,22 +43,27 @@ export const App = () => {
     <div className="app">
       <div className="app__title">Typr</div>
       <div className="app__middle">
-        <p>
-          {Math.floor(
-            (typingTest.current.length /
-              (typingTest.current.length + mistakes)) *
-              100
-          )}
-          %
-        </p>
-        <p>{timeToWrite}</p>
-        <div className="app__middle__text">
-          <p className="Character">
-            <span className="Character-out">{outgoingChars}</span>
-            <span className="Character-current">{currentChar}</span>
-            <span>{incomingChars}</span>
-          </p>
-        </div>
+        {showSummary ? (
+          <Summary
+            wpm={typingTest.current.length / 5 / (timeToWrite / 60)}
+            acc={Math.floor(
+              (typingTest.current.length /
+                (typingTest.current.length + mistakes)) *
+                100
+            )}
+            time={timeToWrite}
+          />
+        ) : (
+          <>
+            <div className="app__middle__text">
+              <p className="Character">
+                <span className="Character-out">{outgoingChars}</span>
+                <span className="Character-current">{currentChar}</span>
+                <span>{incomingChars}</span>
+              </p>
+            </div>
+          </>
+        )}
       </div>
     </div>
   );
