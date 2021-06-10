@@ -11,7 +11,7 @@ export const App = () => {
   );
 
   const [outgoingChars, setOutgoingChars] = useState("");
-  const [currentChar, setCurrentChar] = useState(typingTest.current.charAt(0));
+  const currentChar = useRef(typingTest.current[0]);
   const [incomingChars, setIncomingChars] = useState(
     typingTest.current.slice(1)
   );
@@ -20,13 +20,13 @@ export const App = () => {
   const [showSummary, setShowSummary] = useState(false);
 
   useKeyPress((key: any) => {
-    if (key === currentChar) {
+    if (key === currentChar.current) {
       if (!timeToWrite) {
         setTimeToWrite(Date.now());
         setMistakes(0);
       }
-      setOutgoingChars(outgoingChars + currentChar);
-      setCurrentChar(incomingChars[0]);
+      setOutgoingChars(outgoingChars + currentChar.current);
+      currentChar.current = incomingChars[0];
       setIncomingChars(incomingChars.slice(1));
       if (!incomingChars) {
         setTimeToWrite(
@@ -58,7 +58,7 @@ export const App = () => {
             <div className="app__middle__text">
               <p className="Character">
                 <span className="Character-out">{outgoingChars}</span>
-                <span className="Character-current">{currentChar}</span>
+                <span className="Character-current">{currentChar.current}</span>
                 <span>{incomingChars}</span>
               </p>
             </div>
