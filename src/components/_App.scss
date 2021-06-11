@@ -2,7 +2,7 @@
   display: grid;
   grid-auto-columns: 1fr;
   grid-template-columns: 1fr;
-  grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+  grid-template-rows: 0.5fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
   gap: 0px 0px;
   grid-template-areas:
     "marginTop"
@@ -19,16 +19,22 @@
     "bot"
     "margin-bot";
   margin: 0 auto;
-  width: clamp(300px, 100%, 1000px);
   height: 100%;
+  max-width: 1400px;
+  align-items: center;
+  padding: 0px 20px;
   &__title {
+    margin: 0 auto;
+    width: 100%;
     grid-area: top;
     text-align: left;
     padding-top: 15px;
     display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
     &__text {
       color: hsl(0, 0%, 65%);
-      font-family: "Roboto Mono", monospace;
       font-size: 50px;
       font-weight: 500;
       display: flex;
@@ -39,20 +45,27 @@
       }
     }
   }
+  &__options {
+    &__option,
+    &__option--active {
+      cursor: pointer;
+    }
+    &__option--active {
+      color: hsl(51, 100%, 45%);
+    }
+  }
   &__middle {
     grid-area: mid;
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 0px 5px;
     &__text {
       font-size: 35px;
       color: hsl(0, 0%, 50%);
       font-family: "Roboto Mono", monospace;
       letter-spacing: 3px;
       transition: all 2s ease;
-      word-break: break-word;
-      word-wrap: nowrap;
+      overflow-wrap: break-word;
       &__outgoing {
         color: hsl(0, 0%, 80%);
       }

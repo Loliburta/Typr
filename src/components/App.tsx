@@ -11,10 +11,23 @@ export const App = () => {
   const [timeToWrite, setTimeToWrite] = useState(0);
   const [mistakes, setMistakes] = useState(0);
   const [showSummary, setShowSummary] = useState(false);
-
+  const [testLength, setTestLength] = useState(25);
+  const reset = () => {
+    const test = words
+      .sort(() => 0.5 - Math.random())
+      .slice(0, testLength)
+      .join(" ");
+    setTypingTest(test);
+    setOutgoingChars("");
+    setCurrentChar(test[0]);
+    setIncomingChars(test.slice(1));
+    setTimeToWrite(0);
+    setShowSummary(false);
+  };
   useEffect(() => {
     reset();
-  }, []);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [testLength]);
   useKeyPress((key: any) => {
     if (key === currentChar) {
       if (!timeToWrite) {
@@ -34,18 +47,6 @@ export const App = () => {
       setMistakes(mistakes + 1);
     }
   });
-  const reset = () => {
-    const test = words
-      .sort(() => 0.5 - Math.random())
-      .slice(0, 26)
-      .join(" ");
-    setTypingTest(test);
-    setOutgoingChars("");
-    setCurrentChar(test[0]);
-    setIncomingChars(test.slice(1));
-    setTimeToWrite(0);
-    setShowSummary(false);
-  };
 
   return (
     <div className="app">
@@ -53,6 +54,39 @@ export const App = () => {
         <p className="app__title__text" onClick={reset}>
           Typr
         </p>
+        <div className="app__options">
+          Words{" "}
+          <span
+            className={
+              testLength === 10
+                ? "app__options__option--active"
+                : "app__options__option"
+            }
+            onClick={() => setTestLength(10)}
+          >
+            10
+          </span>{" "}
+          <span
+            className={
+              testLength === 25
+                ? "app__options__option--active"
+                : "app__options__option"
+            }
+            onClick={() => setTestLength(25)}
+          >
+            25
+          </span>{" "}
+          <span
+            className={
+              testLength === 50
+                ? "app__options__option--active"
+                : "app__options__option"
+            }
+            onClick={() => setTestLength(50)}
+          >
+            50
+          </span>
+        </div>
       </div>
       <div className="app__middle">
         {showSummary ? (
