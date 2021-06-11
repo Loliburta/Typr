@@ -23,13 +23,21 @@
   height: 100%;
   &__title {
     grid-area: top;
-    font-size: 50px;
     text-align: left;
-    padding-left: 15px;
     padding-top: 15px;
-    font-weight: 500;
-    color: hsl(0, 0%, 90%);
-    font-family: "Roboto Mono", monospace;
+    display: flex;
+    &__text {
+      color: hsl(0, 0%, 65%);
+      font-family: "Roboto Mono", monospace;
+      font-size: 50px;
+      font-weight: 500;
+      display: flex;
+      cursor: pointer;
+      transition: color 0.5s ease;
+      &:hover {
+        color: hsl(51, 100%, 45%);
+      }
+    }
   }
   &__middle {
     grid-area: mid;
@@ -38,21 +46,31 @@
     align-items: center;
     padding: 0px 5px;
     &__text {
-      font-size: 30px;
+      font-size: 35px;
       color: hsl(0, 0%, 50%);
       font-family: "Roboto Mono", monospace;
+      letter-spacing: 3px;
+      transition: all 2s ease;
+      word-break: break-word;
+      word-wrap: nowrap;
+      &__outgoing {
+        color: hsl(0, 0%, 80%);
+      }
+      &__current {
+        background-color: hsla(0, 0%, 100%, 0.02);
+        transition: background-color 0.5s ease;
+        position: relative;
+        border-bottom: 2px solid hsl(225, 31%, 74%);
+        animation: blinker 2s ease infinite;
+        @keyframes blinker {
+          50% {
+            border-color: transparent;
+          }
+        }
+      }
+      &__incoming {
+        color: hsl(0, 0%, 50%);
+      }
     }
   }
-}
-
-.Character {
-  flex-wrap: wrap;
-}
-
-.Character-current {
-  background-color: rgba(255, 255, 255, 0.1);
-}
-
-.Character-out {
-  color: hsl(0, 0%, 80%);
 }
