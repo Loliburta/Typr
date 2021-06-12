@@ -62,7 +62,7 @@ export const App = () => {
     }
   });
   const tabHandle = (key: any, outFocusRef: any) => {
-    if (key === "Enter") {
+    if (key === "Enter" || key === "Tab") {
       reset();
     }
     outFocusRef.current.focus();
