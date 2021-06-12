@@ -86,4 +86,24 @@
       }
     }
   }
+  &__bot {
+    display: flex;
+    grid-area: bot;
+    justify-content: center;
+
+    &__icon {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+      font-size: 3rem;
+      width: 90px;
+      height: 50px;
+      &:focus {
+        background-color: hsl(216, 5%, 30%);
+        border-radius: 3px;
+        outline: none;
+      }
+    }
+  }
 }
