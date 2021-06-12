@@ -1,20 +1,20 @@
 {
   "files": {
-    "main.css": "/Typr/static/css/main.e61deb7f.chunk.css",
-    "main.js": "/Typr/static/js/main.6f2915e5.chunk.js",
-    "main.js.map": "/Typr/static/js/main.6f2915e5.chunk.js.map",
+    "main.css": "/Typr/static/css/main.9a78335e.chunk.css",
+    "main.js": "/Typr/static/js/main.76b761f5.chunk.js",
+    "main.js.map": "/Typr/static/js/main.76b761f5.chunk.js.map",
     "runtime-main.js": "/Typr/static/js/runtime-main.9f97bc05.js",
     "runtime-main.js.map": "/Typr/static/js/runtime-main.9f97bc05.js.map",
     "static/js/2.b8d31c37.chunk.js": "/Typr/static/js/2.b8d31c37.chunk.js",
     "static/js/2.b8d31c37.chunk.js.map": "/Typr/static/js/2.b8d31c37.chunk.js.map",
     "index.html": "/Typr/index.html",
-    "static/css/main.e61deb7f.chunk.css.map": "/Typr/static/css/main.e61deb7f.chunk.css.map",
+    "static/css/main.9a78335e.chunk.css.map": "/Typr/static/css/main.9a78335e.chunk.css.map",
     "static/js/2.b8d31c37.chunk.js.LICENSE.txt": "/Typr/static/js/2.b8d31c37.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.9f97bc05.js",
     "static/js/2.b8d31c37.chunk.js",
-    "static/css/main.e61deb7f.chunk.css",
-    "static/js/main.6f2915e5.chunk.js"
+    "static/css/main.9a78335e.chunk.css",
+    "static/js/main.76b761f5.chunk.js"
   ]
 }
