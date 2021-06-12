@@ -13,16 +13,16 @@ export const App = () => {
   const [timeToWrite, setTimeToWrite] = useState(0);
   const [mistakes, setMistakes] = useState(0);
   const [showSummary, setShowSummary] = useState(false);
-  const [testLength, setTestLength] = useState(25);
+  const [testWordsCount, setTestWordsCount] = useState(25);
   const [accuracy, setAccuracy] = useState(0);
 
   const outFocusRef = useRef(null);
   const reset = () => {
-    console.log("abc");
     const test = words
       .sort(() => 0.5 - Math.random())
-      .slice(0, testLength)
+      .slice(0, testWordsCount)
       .join(" ");
+
     setTypingTest(test);
     setOutgoingChars("");
     setCurrentChar(test[0]);
@@ -34,11 +34,8 @@ export const App = () => {
     reset();
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [testLength]);
-  useEffect(() => {
-    if (testLength === 10) {
-    }
-  }, [testLength]);
+  }, [testWordsCount]);
+
   useKeyPress((key: any) => {
     if (key === currentChar) {
       if (!timeToWrite) {
@@ -49,9 +46,7 @@ export const App = () => {
       setCurrentChar(incomingChars[0]);
       setIncomingChars(incomingChars.slice(1));
       if (!incomingChars) {
-        setTimeToWrite(
-          Math.round(((Date.now() - timeToWrite) / 1000) * 100) / 100
-        );
+        setTimeToWrite(Date.now() - timeToWrite);
         setAccuracy(
           Math.floor((typingTest.length / (typingTest.length + mistakes)) * 100)
         );
@@ -81,31 +76,31 @@ export const App = () => {
           </span>{" "}
           <span
             className={
-              testLength === 10
+              testWordsCount === 10
                 ? "app__options__option--active"
                 : "app__options__option"
             }
-            onClick={() => setTestLength(10)}
+            onClick={() => setTestWordsCount(10)}
           >
             10
           </span>{" "}
           <span
             className={
-              testLength === 25
+              testWordsCount === 25
                 ? "app__options__option--active"
                 : "app__options__option"
             }
-            onClick={() => setTestLength(25)}
+            onClick={() => setTestWordsCount(25)}
           >
             25
           </span>{" "}
           <span
             className={
-              testLength === 50
+              testWordsCount === 50
                 ? "app__options__option--active"
                 : "app__options__option"
             }
-            onClick={() => setTestLength(50)}
+            onClick={() => setTestWordsCount(50)}
           >
             50
           </span>
@@ -114,9 +109,9 @@ export const App = () => {
       <div className="app__middle">
         {showSummary ? (
           <Summary
-            wpm={typingTest.length / 5 / (timeToWrite / 60)}
+            wpm={typingTest.length / 5 / (timeToWrite / 60000)}
             acc={accuracy}
-            time={timeToWrite}
+            time={Math.round(timeToWrite / 10) / 100}
           />
         ) : (
           <>
@@ -141,6 +136,7 @@ export const App = () => {
         >
           <Icon icon={resetIcon} flip="horizontal" />
         </div>
+        <div className="app__bot__info">double tab or tab enter to reset</div>
       </div>
     </div>
   );

@@ -33,6 +33,7 @@
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
+    z-index: 100;
     &__text {
       color: hsl(0, 0%, 65%);
       font-size: 50px;
@@ -60,7 +61,7 @@
     justify-content: center;
     align-items: center;
     &__text {
-      font-size: 35px;
+      font-size: clamp(15px, 5vw, 35px);
       color: hsl(0, 0%, 50%);
       font-family: "Roboto Mono", monospace;
       letter-spacing: 3px;
@@ -88,8 +89,9 @@
   }
   &__bot {
     display: flex;
+    flex-direction: column;
     grid-area: bot;
-    justify-content: center;
+    align-items: center;
 
     &__icon {
       display: flex;
@@ -104,6 +106,12 @@
         border-radius: 3px;
         outline: none;
       }
+    }
+    &__info {
+      font-weight: 300;
+      margin-top: 10px;
+      color: hsl(216, 5%, 40%);
+      text-align: center;
     }
   }
 }
